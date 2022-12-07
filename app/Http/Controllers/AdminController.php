@@ -7,6 +7,8 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
+
 class AdminController extends Controller
 {
     /**
@@ -46,8 +48,7 @@ class AdminController extends Controller
         $user=User::create(['name'=>$r->username ,'image'=>$file_name,'email'=>$r->useremail ,'password'=>$r->userpass ,'role_id'=>$r->userrole ,'is_active'=>$r->userstatus]);
         if($user){
             $file->move('images/user_images', $file_name); 
-            $users=User::all();
-            return view('layouts.admin.users.index', compact('users'));
+           return redirect('admin/user');
         }
         
     }
@@ -89,10 +90,8 @@ class AdminController extends Controller
         $file_name = time().'.'.$file->getClientOriginalName(); 
         $edit=User::find($id);
          $oldimage=$edit->image; // ----------->old image
-         $path="/images/user_images/$oldimage";
-            if(File::exists($path)){
-                File::delete($path);
-            }
+                unlink(public_path().'/images/user_images/'.$oldimage);
+
         $edit->name=$r->username;
         $edit->image=$file_name;
         $edit->email=$r->useremail;
@@ -104,8 +103,7 @@ class AdminController extends Controller
         if($edit){
                
             $file->move('images/user_images', $file_name); 
-            $users=User::all();
-            return view('layouts.admin.users.index', compact('users'));
+            return redirect('admin/user');
         }
 
     }
@@ -119,5 +117,12 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //
+        $image=User::find($id);
+        unlink(public_path().'/images/user_images/'.$image->image);
+        $delete=User::find($id)->delete();
+        if($delete){
+            Session::flash('Deleted_user','user is deletd');
+            return redirect('admin/user');
+        }
     }
 }

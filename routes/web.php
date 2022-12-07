@@ -23,9 +23,10 @@ Route::prefix('admin')->group(function(){
 
     Route::get('user', [AdminController::class,'index'])->name('view_users');
     Route::get('user/create', [AdminController::class ,'create'])->name('create_user');
-    Route::post('user/create/store', [AdminController::class ,'store'])->name('store_user');
-    Route::get('user/create/edit/{id}', [AdminController::class ,'edit'])->name('edit_user');
-    Route::post('user/create/save/{id}', [AdminController::class ,'update'])->name('save_edit');
+    Route::post('user/store', [AdminController::class ,'store'])->name('store_user');
+    Route::get('user/edit/{id}', [AdminController::class ,'edit'])->name('edit_user');
+    Route::post('user/save/{id}', [AdminController::class ,'update'])->name('save_edit');
+    Route::get('user/delet/{id}', [AdminController::class ,'destroy'])->name('delete_user');
 
 });
 

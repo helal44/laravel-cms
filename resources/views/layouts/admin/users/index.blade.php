@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
+@if(Session::has('Deleted_user'))
+<p class="bg-danger">{{session('Deleted_user')}}</p>
+@endif
 
 <h1 class="justify-center">/Users Table</h1>
 <table class="table table-hover">

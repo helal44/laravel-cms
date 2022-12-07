@@ -52,9 +52,12 @@
 
             </div>
             <div class="form-group">
-                <input type="submit" name="submit" value="Create User" class="btn btn-primary">
+                <input type="submit" name="submit" value="Edit User" class="btn btn-primary">
             </div>
         </form>
+        <div class="form-group">
+                <a href="{{route('delete_user',$users->id)}}" class="btn btn-primary"> Delete_User</a>
+            </div>
     </div>
 </div>
 
