@@ -21,9 +21,11 @@ Route::prefix('admin')->group(function(){
         return view('layouts.admin');
     });
 
-    Route::get('user', [AdminController::class,'index']);
-    Route::get('user/create', [AdminController::class ,'create']);
-    Route::get('user/create/store', [AdminController::class ,'store']);
+    Route::get('user', [AdminController::class,'index'])->name('view_users');
+    Route::get('user/create', [AdminController::class ,'create'])->name('create_user');
+    Route::post('user/create/store', [AdminController::class ,'store'])->name('store_user');
+    Route::get('user/create/edit/{id}', [AdminController::class ,'edit'])->name('edit_user');
+    Route::post('user/create/save/{id}', [AdminController::class ,'update'])->name('save_edit');
 
 });
 

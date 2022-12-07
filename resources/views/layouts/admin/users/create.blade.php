@@ -8,7 +8,8 @@
 
 {!!Form::close()!!} --}}
 
-<form action="create/store" method="HEAD" >
+<form action="{{ route('store_user') }}" method="POST" enctype="multipart/form-data" >
+   @csrf
     <div class="form-group">
         <label for="title">User Name</label>
         <input type="text" name="username" class="form-control" required>
@@ -16,6 +17,10 @@
     <div class="form-group">
         <label for="title">User Email</label>
         <input type="text" name="useremail" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="title">User Image</label>
+        <input type="file" name="image" class="form-control" required>
     </div>
     <div class="form-group">
         <label for="title">User Password</label>
