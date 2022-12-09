@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Images;
+use App\Http\Requests\userrequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -41,7 +41,7 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $r)
+    public function store(userrequest $r)
     {
         $file = $r->image;
         $file_name = time().'.'.$file->getClientOriginalName(); 
@@ -84,13 +84,16 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $r, $id)
+    public function update(userrequest $r, $id)
     {
         $file = $r->image;
         $file_name = time().'.'.$file->getClientOriginalName(); 
         $edit=User::find($id);
          $oldimage=$edit->image; // ----------->old image
-                unlink(public_path().'/images/user_images/'.$oldimage);
+         $path=public_path().'/images/user_images/'.$oldimage;
+               if(File::exists($path)){
+                unlink($path);
+               }
 
         $edit->name=$r->username;
         $edit->image=$file_name;

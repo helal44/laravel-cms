@@ -12,20 +12,20 @@
         @csrf
             <div class="form-group">
                 <label for="title">User Name</label>
-                <input type="text" name="username" class="form-control" value="{{$users->name}}" required>
+                <input type="text" name="username" class="form-control" value="{{$users->name}}" >
             </div>
             <div class="form-group">
                 <label for="title">User Email</label>
-                <input type="text" name="useremail" class="form-control" value="{{$users->email}}" required>
+                <input type="text" name="useremail" class="form-control" value="{{$users->email}}" >
             </div>
             <div class="form-group">
                 <label for="title">User Image</label>
-                <input type="file" name="image" class="form-control" required>
+                <input type="file" name="image" class="form-control" >
                 
             </div>
             <div class="form-group">
                 <label for="title">User Password</label>
-                <input type="password" name="userpass" class="form-control" value="{{$users->password}}" required>
+                <input type="password" name="userpass" class="form-control" value="{{$users->password}}" >
             </div>
             <div class="form-group">
                 <label for="">User Role</label>
@@ -56,10 +56,10 @@
             </div>
         </form>
         <div class="form-group">
-                <a href="{{route('delete_user',$users->id)}}" class="btn btn-primary"> Delete_User</a>
+                <a href="{{route('delete_user',$users->id)}}" class="btn btn-danger"> Delete_User</a>
             </div>
     </div>
 </div>
-
+@include('include.errors')
 @stop
 

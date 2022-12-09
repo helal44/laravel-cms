@@ -12,19 +12,19 @@
    @csrf
     <div class="form-group">
         <label for="title">User Name</label>
-        <input type="text" name="username" class="form-control" required>
+        <input type="text" name="username" class="form-control" >
     </div>
     <div class="form-group">
         <label for="title">User Email</label>
-        <input type="text" name="useremail" class="form-control" required>
+        <input type="text" name="useremail" class="form-control" >
     </div>
     <div class="form-group">
         <label for="title">User Image</label>
-        <input type="file" name="image" class="form-control" required>
+        <input type="file" name="image" class="form-control" >
     </div>
     <div class="form-group">
         <label for="title">User Password</label>
-        <input type="password" name="userpass" class="form-control" required>
+        <input type="password" name="userpass" class="form-control" >
     </div>
     <div class="form-group">
         <label for="">User Role</label>
@@ -47,5 +47,6 @@
         <input type="submit" name="submit" value="Create User" class="btn btn-primary">
     </div>
 </form>
+@include('include.errors')
 @stop
 

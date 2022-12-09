@@ -26,7 +26,7 @@
 
       <tr>
         <td>{{ $user->id }}</td>
-        <td><img src="/images/user_images/{{ $user->image}}" alt="image" height="50%" width="50%"></td>
+        <td><img src="/images/user_images/{{ $user->image}}" alt="image" height="70px" width="60px"></td>
         <td><a href="{{route('edit_user',$user->id)}}">{{ $user->name }}</a></td>
         <td>{{ $user->email }}</td>
         <td>{{ $user->role->name }}</td>

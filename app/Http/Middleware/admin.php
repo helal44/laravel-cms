@@ -21,6 +21,7 @@ class admin
             if(Auth::user()->admin){
                 return $next($request);
             }
+           
         }
        
     }
