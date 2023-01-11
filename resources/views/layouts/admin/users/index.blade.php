@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('include.admin')
 
 @section('content')
 @if(Session::has('Deleted_user'))
@@ -13,6 +13,7 @@
         <th scope="col">Image</th>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
+        <th scope="col">Password</th>
         <th scope="col">Role</th>
         <th scope="col">Status</th>
         <th scope="col">Created_at</th>
@@ -29,6 +30,7 @@
         <td><img src="/images/user_images/{{ $user->image}}" alt="image" height="70px" width="60px"></td>
         <td><a href="{{route('edit_user',$user->id)}}">{{ $user->name }}</a></td>
         <td>{{ $user->email }}</td>
+        <td>{{Str::limit( $user->password ,7) }}</td>
         <td>{{ $user->role->name }}</td>
         <td>{{ $user->is_active == 1 ? 'Active' :'Not Active' }}</td>
         <td>{{ $user->created_at->diffForHumans() }}</td>

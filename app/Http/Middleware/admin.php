@@ -18,8 +18,10 @@ class admin
     public function handle(Request $request, Closure $next)
     {
         if(Auth::check()){
-            if(Auth::user()->admin){
+            if(Auth::user()->is_active ==1){
                 return $next($request);
+            }else{
+                return redirect('/');
             }
            
         }

@@ -45,7 +45,7 @@ class AdminController extends Controller
     {
         $file = $r->image;
         $file_name = time().'.'.$file->getClientOriginalName(); 
-        $user=User::create(['name'=>$r->username ,'image'=>$file_name,'email'=>$r->useremail ,'password'=>$r->userpass ,'role_id'=>$r->userrole ,'is_active'=>$r->userstatus]);
+        $user=User::create(['name'=>$r->username ,'image'=>$file_name,'email'=>$r->useremail ,'password'=>bcrypt($r->userpass) ,'role_id'=>$r->userrole ,'is_active'=>$r->userstatus]);
         if($user){
             $file->move('images/user_images', $file_name); 
            return redirect('admin/user');
@@ -61,6 +61,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
+    
     }
 
     /**
@@ -98,7 +99,7 @@ class AdminController extends Controller
         $edit->name=$r->username;
         $edit->image=$file_name;
         $edit->email=$r->useremail;
-        $edit->password=$r->userpass;
+        $edit->password=bcrypt($r->userpass);
         $edit->role_id=$r->userrole;
         $edit->is_active=$r->userstatus;
         $edit->save();

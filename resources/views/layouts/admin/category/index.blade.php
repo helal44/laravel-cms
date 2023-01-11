@@ -1,9 +1,9 @@
-@extends('layouts.admin')
+@extends('include.admin')
 
 @section('content')
 <div class=" row">
     <div class=" col-lg-4">
-     <h1>/ Create Posts </h1>
+     <h1>/ Create Category </h1>
             <form action="{{ route('save_category') }}" method="POST" enctype="multipart/form-data" >
         @csrf
             <div class="form-group">

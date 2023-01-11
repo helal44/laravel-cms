@@ -24,6 +24,23 @@ class PostController extends Controller
         return view('layouts.admin.posts.index',compact('posts','cat'));
     }
 
+
+   public function show_posts(){
+    $posts=Posts::paginate(4);
+    $cat=Category::all();
+    return view('layouts.user.post',compact('posts','cat'));
+   }
+
+
+
+   public function signal_post($id){
+    $cat=Category::all();
+    $post=Posts::find($id);
+
+    return view('layouts.user.signal_post',compact('post','cat'));
+
+   }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -45,7 +62,7 @@ class PostController extends Controller
     {
         //
         $file = $r->image;
-        $file_name = time().'.'.$file->getClientOriginalName(); 
+        $file_name = time().'.'.$file->getClientOriginalName();
         $post=Posts::create(['user_id'=>32,'category_id'=>$r->category,'title'=>$r->title,'image'=>$file_name,'body'=>$r->body]);
         if($post){
             $file->move('images/post_images', $file_name);
@@ -62,7 +79,7 @@ class PostController extends Controller
     public function show($id)
     {
         //
-          
+
 
 
     }
@@ -79,7 +96,7 @@ class PostController extends Controller
         $cat=Category::all();
         $post=Posts::find($id);
         return view('layouts.admin.posts.edit' ,compact('post','cat'));
-      
+
     }
 
     /**
@@ -94,7 +111,7 @@ class PostController extends Controller
         //
         $file=$r->image;
         $file_name=time().'.'.$file->getClientOriginalname();
-        
+
         $oldimage=Posts::find($id)->image;
         $path=public_path().'/images/post_images/'.$oldimage;
      if(File::exists($path)){
@@ -124,10 +141,10 @@ class PostController extends Controller
         $delete=Posts::find($id)->delete();
         if($delete){
             return redirect('admin/posts');
-        
+
     }
 
 
 }
-   
+
 }
